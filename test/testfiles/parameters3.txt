@@ -1,0 +1,10 @@
+
+tempo 120.0 % bpm
+
+cf_notes  c4 d4 e4 f4 g4 a4 b4 % scale
+
+cp1_notes g4 a4 b4 c5 d5 e5 f5 % scale
+cp1_delay 4                    % beats
+
+cp2_notes g3 a3 b3 c4 d4 e4 f4 % scale
+cp2_delay 8                    % beats
