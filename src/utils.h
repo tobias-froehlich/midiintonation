@@ -27,7 +27,7 @@ namespace utils {
   StatusByteType status_byte_type(
    std::vector< unsigned char > message);
 
-  int channel(std::vector< unsigned char > message);
+  unsigned int channel(std::vector< unsigned char > message);
 
   unsigned char find_nearest_midicode(
     float frequency

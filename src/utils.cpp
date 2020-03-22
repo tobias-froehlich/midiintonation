@@ -111,7 +111,7 @@ StatusByteType utils::status_byte_type(
   }
 }
 
-int utils::channel(std::vector< unsigned char > message) {
+unsigned int utils::channel(std::vector< unsigned char > message) {
   StatusByteType type = status_byte_type(message);
   if (type == note_on) {
     return message[0] - 144;

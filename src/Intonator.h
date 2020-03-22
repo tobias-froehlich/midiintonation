@@ -11,6 +11,8 @@ class Intonator {
     Intonator();
     ~Intonator();
     void read_parameter_file(std::string filename);
+    void read_channel_parameters(
+     Parameters* parameters);
     int get_num_of_voices();
     void tune(unsigned char midicode);
     float get_frequency(unsigned char midicode);

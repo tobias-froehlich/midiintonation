@@ -24,7 +24,14 @@ void Intonator::read_parameter_file(
 
   parameters->read_file(filename);
 
-  if ( ! (
+  read_channel_parameters(parameters);
+
+  delete parameters;
+}
+
+void Intonator::read_channel_parameters(
+ Parameters* parameters) {
+   if ( ! (
        (parameters->name_occurs("channels"))
     && (parameters->name_occurs("bending"))
     && (parameters->name_occurs("tuning"))
@@ -50,8 +57,7 @@ void Intonator::read_parameter_file(
       "The parameters 'channel', 'bending' and "
       "'tuning' must have the same length."
     );
-  }
-
+  } 
   zVoices.clear();
 
   for ( unsigned int i=0; i<channels.size(); i++ ) {
@@ -59,8 +65,6 @@ void Intonator::read_parameter_file(
     zVoices.back().set_channel(channels[i]);
     zVoices.back().set_bending(std::stof(bending[i]));
   }
-
-  delete parameters;
 }
 
 int Intonator::get_num_of_voices() {
@@ -124,7 +128,7 @@ float Intonator::get_frequency(
 void Intonator::push(std::vector< unsigned char > message) {
   StatusByteType type
    = utils::status_byte_type(message);
-  int channel = utils::channel(message);
+  unsigned int channel = utils::channel(message);
   unsigned char midicode = 0;
   unsigned char velocity = 0;
   for ( Voice &voice : zVoices ) {
@@ -136,17 +140,21 @@ void Intonator::push(std::vector< unsigned char > message) {
         voice.set_frequency(get_frequency(midicode));
         voice.set_velocity(velocity);
         voice.calculate();
+//        if (channel == 0) {
         zMessages.push_back(
           voice.get_bending_message()
         );
         zMessages.push_back(
           voice.get_note_on_message()
         );
+//        }
       }
       else if (type == note_off) {
-        zMessages.push_back(
-          voice.get_note_off_message()
-        );
+//        if (channel == 0) {
+          zMessages.push_back(
+            voice.get_note_off_message()
+          );
+//        }
       }
     }
   }
