@@ -66,7 +66,9 @@ void Parameters::read_file(std::string filename) {
   init();
 
   if ( ! file ) {
-    throw std::invalid_argument("File not found.");
+    throw std::invalid_argument(
+      "File not found: parameter file"
+    );
   }
 
   std::string line;

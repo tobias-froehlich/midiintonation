@@ -1,5 +1,5 @@
 
-tunetable ../test/testfiles/tunetable.txt
+tunetable tunetable.txt tunetable2.txt
 
 channels 1   2   3   4
 bending  1.0 1.0 1.0 1.0
