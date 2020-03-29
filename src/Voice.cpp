@@ -97,7 +97,7 @@ void Voice::calculate() {
 
   message.push_back(128 + zChannel);
   message.push_back(zMidiCodeOut);
-  message.push_back(0);
+  message.push_back(zVelocity);
   zNoteOffMessage = message;
 
 }

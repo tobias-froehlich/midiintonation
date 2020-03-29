@@ -93,7 +93,7 @@ TEST ( Voice, calculate ) {
    {146, 57, 50};
 
   std::vector< unsigned char > noteoffmessage
-   {130, 57, 0};
+   {130, 57, 50};
 
   ASSERT_EQ(voice->get_bending_message(), bendingmessage);
   ASSERT_EQ(voice->get_note_on_message(), noteonmessage);
